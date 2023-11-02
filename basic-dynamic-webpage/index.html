@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <!-- font awsome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- My CSS -->
+    <link href="style.css" rel="stylesheet" />
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <title>Gallery</title>
+</head>
+
+<body onload="loadImageData()">
+
+    <!-- Modal -->
+    <div class="modal fade" id="newImage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="newImage">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="imageURL" class="form-label">Image URL </label>
+                        <input type="url" class="form-control" id="imageURL" placeholder="https://image.url.com">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="imageName" class="form-label">Image Name</label>
+                        <input type="text" class="form-control" id="imageName" placeholder="Image Name">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="imageType" class="form-label">Image Type</label>
+                        <input type="text" class="form-control" id="imageType" placeholder="Type of the image">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="imageDescription" class="form-label">Image Description</label>
+                        <textarea type="password" class="form-control" id="imageDescription"></textarea>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="addImage()" data-bs-dismiss="modal">Save
+                        changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark shadow p-3 mb-5 bg-body rounded">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="#">Gallery</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                </ul>
+
+                <button type="button" class=" btn btn-secondary " data-bs-toggle="modal" data-bs-target="#newImage">
+                    <i class="fas fa-folder-plus"></i>
+                    Add Image
+                </button>
+
+            </div>
+        </div>
+    </nav>
+
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-8 col-lg-6 ">
+            <div class="input-group mb-3 container md-6 ">
+                <input type="text" class="form-control shadow-sm p-3 " placeholder="Search For"
+                    aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <span class="input-group-text" id="basic-addon2"><i class="fas fa-search"></i></span>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row  p-5 mt-5 task_container">
+        <!-- <div class="col-md-6 col-lg-4 ">
+            <div class="card  ">
+                <div class="card-header d-flex justify-content-end gap-2">
+                    <button type="button" class="btn btn-outline-warning"> <i class="fas fa-pencil-alt"></i>
+                    </button>
+                    <button type="button" class="btn btn-outline-danger"> <i class="fas fa-trash-alt"></i>
+                    </button>
+
+
+                </div>
+                <img src="https://static.scientificamerican.com/blogs/cache/file/1D4440C5-CD59-4A53-A23648FF2C7CD0DD_source.jpg?w=590&h=800&B9BBE026-DB91-4291-B39DC8D859778498"
+                    class="card-img-top" alt="image.jpg">
+
+                <div class="card-body align-items-start">
+
+                    <h5 class="card-title">Special title treatment</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <h6><span class="badge bg-secondary">New</span></h6>
+                </div>
+                <div class="card-footer text-muted">
+                    <button type="button" class="btn btn-outline-secondary float-end">Submit</button>
+                </div>
+            </div>
+        </div> -->
+    </div>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+    <script src="index.js">
+
+    </script>
+</body>
+
+</html>

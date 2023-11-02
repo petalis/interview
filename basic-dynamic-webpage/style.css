@@ -1,0 +1,18 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+body{
+    margin:0; 
+    padding:0;
+    font-family: 'Nunito', sans-serif;
+    background-color: rgba(0, 0, 0, 0.171);
+}
+
+/* .task_container{
+    margin-left: 10px;
+    padding: 0 -200px;
+} */
