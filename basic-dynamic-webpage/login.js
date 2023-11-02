@@ -1,8 +1,4 @@
-import React from 'react'
 
-export default function index() {
-  return (
-    <>
     <h1 className="display-1 text-center m-4">Login</h1>
       <div className="container">
         <form className="row g-3 needs-validation" novalidate>
@@ -45,6 +41,4 @@ export default function index() {
           </button>
         </form>
       </div>
-    </>
-  )
-}
+  
