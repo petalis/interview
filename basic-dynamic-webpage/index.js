@@ -23,7 +23,7 @@ const createCard = ({ id, url, name, type, description }) => {
             <h6><span class="badge bg-secondary">${type}</span></h6>
         </div>
         <div class="card-footer text-muted">
-            <button type="button" class="btn btn-outline-secondary float-end" onclick="openImage" id=${id}>Open Image</button>
+            <button type="button" class="btn btn-outline-secondary float-end" onclick="openImage.apply(this, arguments)" id=${id}>Open Image</button>
         </div>
     </div>
 </div>`;
