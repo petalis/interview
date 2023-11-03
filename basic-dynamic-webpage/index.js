@@ -23,11 +23,27 @@ const createCard = ({ id, url, name, type, description }) => {
             <h6><span class="badge bg-secondary">${type}</span></h6>
         </div>
         <div class="card-footer text-muted">
-            <button type="button" class="btn btn-outline-secondary float-end" id=${id}>Open Image</button>
+            <button type="button" class="btn btn-outline-secondary float-end" onclick="openImage" id=${id}>Open Image</button>
         </div>
     </div>
 </div>`;
 };
+
+const imageCard=(url)
+
+const openImage = () => {
+    const getImageData = localStorage.getItem("image");
+    if (!getImageData)
+        return;
+
+    const { cards } = JSON.parse(getImageData);
+
+    cards.map((card) => {
+        const createNewCard = createCard(card);
+        taskContainer.insertAdjacentHTML("beforeend", createNewCard);
+        globalTaskData.push(card);
+    })
+}
 
 const loadImageData = () => {
     const getImageData = localStorage.getItem("key");
